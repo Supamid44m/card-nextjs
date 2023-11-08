@@ -7,6 +7,7 @@ import { BiSolidShieldAlt2 } from 'react-icons/bi';
 import { BsTagFill } from 'react-icons/bs';
 import Popup from 'reactjs-popup';
 
+
 function Profile() {
   const [profile, setProfile] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,34 +39,38 @@ function Profile() {
   }
 
   return (
-    <div className="">
-      <div className='bg-black  rounded-md w-2/4 '>
+    <>
+       <div className="absolute inset-x-0 top-0 w-full h-24  bg-yellow-200 ">
+        </div>
+      <div className='bg-white  rounded-md flex items-center max-w-md mx-auto mt-10 shadow  border-0 p-3 relative '>
         <form className="w-full relative pt-4 pb-4 pl-4 pr-4 ">
           <div className="relative">
             <input
               type="search"
               placeholder="Search"
-              className="rounded-full w-full p-4"
+              className="rounded-md  p-4 w-96 border-black border h-2 shadow-md"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 rounded-full">
+            <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 ">
               <AiOutlineSearch />
             </button>
           </div>
         </form>
       </div>
 
-      <h1>People</h1>
-      <p>
-        Search  results {filteredProfile.length} items of {profile.length}
-      </p>
-      <div className="grid grid-cols-4 gap-4">
+      <div className='pl-12'>
+        <span className='border-s-2 pl-2 text-xl'>People</span>
+        <p className='pl-2'>
+          Search  results {filteredProfile.length} items of {profile.length}
+        </p>
+      </div>
+      <div className="grid grid-cols-4 gap-4 mb-10 place-items-center mt-2">
 
         {filteredProfile.map((item, index) => (
           <div
             key={index}
-            className="block rounded-lg bg-white hover:bg-slate-300 relative shadow-md ml-2 mr-2 "
+            className="block rounded-lg bg-white hover:bg-slate-300 relative shadow-md ml-2 mr-2 h-96 w-4/5 "
           >
             <div className="absolute inset-x-0 top-0 w-full h-20 bg-gradient-to-b from-indigo-500 rounded-t-lg">
             </div>
@@ -85,23 +90,22 @@ function Profile() {
             <div className='relative ml-2'>
               {Object.keys(item.subscription).length > 2 ? (
                 <>
-                  <div className='mb-2'>
-                    <span className='text-l pt-2 flex flex-row'>
+                  <div className='mb-2 '>
+                    <div className='justify-between'>
+                      <span className='text-l pt-2 flex flex-row'>
                       <BiSolidShieldAlt2 />
                       <p className='pl-2'>Guild</p>
                     </span>
-
-                    <div>
-
                     </div>
-                    <span className='text-xs border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 '>{item.gender}</span>
-                    <span className='text-xs ml-2 border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 '>{item.address.country}</span>
 
-                    <Popup trigger={<button><span className='text-xs ml-2 border border-indigo-600 rounded-full hover:bg-indigo-800 '>...</span></button>}
+                    <span className='text-xs border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 hover:text-white'>{item.gender}</span>
+                    <span className='text-xs ml-2 border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 hover:text-white'>{item.address.country}</span>
+
+                    <Popup trigger={<button><span className='text-xs ml-2 border border-indigo-600 rounded-full hover:bg-indigo-800 hover:text-white'>...</span></button>}
                       position="top center">
-                      <div className='bg-white flex flex-col my-2 w-52'>
-                        <span className='text-xs border border-indigo-600 rounded-full h-5 px-2 my-2 mx-2 hover:bg-indigo-800 w-28 '>{item.gender}</span>
-                        <span className='text-xs border border-indigo-600 rounded-full h-5 px-2 my-2 mx-2 hover:bg-indigo-800 w-28'>{item.address.country}</span>
+                      <div className='bg-white flex flex-col my-2 w-52 border border-indigo-600 rounded-md'>
+                        <span className='text-xs border border-indigo-600 rounded-full h-5 px-2 my-2 mx-2 hover:bg-indigo-800 w-28 hover:text-white '>{item.gender}</span>
+                        <span className='text-xs border border-indigo-600 rounded-full h-5 px-2 my-2 mx-2 hover:bg-indigo-800 w-28 hover:text-white'>{item.address.country}</span>
                       </div>
                     </Popup>
 
@@ -121,7 +125,7 @@ function Profile() {
                   <BsTagFill />
                   <p className='pl-2'>Tag</p>
                 </span>
-                <span className='text-xs border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 '>{item.subscription.plan}</span>
+                <span className='text-xs border border-indigo-600 rounded-full px-2 hover:bg-indigo-800 hover:text-white '>{item.subscription.plan}</span>
               </div>
 
 
@@ -130,7 +134,7 @@ function Profile() {
 
         ))}
       </div>
-    </div>
+    </>
   );
 }
 export default Profile
